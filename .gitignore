@@ -1,0 +1,9 @@
+*.zip
+*.class
+.DS_Store
+Thumbs.db
+bin
+out
+.idea
+.project
+*.iml
