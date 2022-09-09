@@ -192,17 +192,17 @@ public class LinkedList<E> extends ListBasic<E> implements List<E> {
 
         @Override
         public E next() {
-            E currentElement = init.next.element;
-            init.next = init.next.next;
+            E currentElement = (E) currentNode.next.element;
+            currentNode = currentNode.next;
             return currentElement;
         }
 
         @Override
         public void remove() {
-            Node prevNode = init.prev;
-            Node nextNode = init.next;
-            prevNode.next = init.next.prev;
-            nextNode.prev = init.next.next;
+            Node prevNode = currentNode.prev;
+            Node nextNode = currentNode.next;
+            prevNode.next = currentNode.next;
+            nextNode.prev = currentNode.prev;
 
         }
     }
