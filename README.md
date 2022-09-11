@@ -21,7 +21,8 @@ ___
 
 ---
 #### Implementierungsaufgabe zu doppelt geketteten Listen (PVA1)
-Die Aufgabe wurde anhand dem Markdown "Aufgabenstellung zu Listen.md" erarbeitet. Der Sourcecode ist in dem Verzeichnis DoppeltGeketteteListe/src/ch.ffhs.dua.list zu finden.
+Die Aufgabe wurde anhand dem Markdown "Aufgabenstellung zu Listen.md" erarbeitet. Der Sourcecode ist in dem Verzeichnis DoppeltGeketteteListe/src/ch.ffhs.dua.list zu finden. <br>
+Die Unit-Tests wurden ergänzt, damit die contains(o), remove(o) und clear()-Methoden geprüft werden.
 
 ---
 #### Implementierungsaufgabe zu Permutationen (PVA2)
