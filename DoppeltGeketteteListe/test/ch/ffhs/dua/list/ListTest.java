@@ -36,6 +36,20 @@ public class ListTest
 		assertFalse(ll.contains(null));
 		ll.add(null);
 		assertTrue(ll.contains(null));
+
+		// Zusätzliche Tests für contains(o)
+		assertTrue(ll.contains("A"));
+		assertFalse(ll.contains("X"));
+
+		// Zusätzlicher Test für remove(o)
+		assertEquals(5, ll.size());
+		ll.remove("E");
+		assertEquals(4, ll.size());
+
+		// Zusätzlicher Test für clear()
+		ll.clear();
+		assertEquals(0, ll.size());
+
 	}
 	
 	@Test
