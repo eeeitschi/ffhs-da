@@ -1,14 +1,10 @@
 package ch.ffhs.dua.permutations;
 
-
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Permutations {
-
-    public static void main(String[] args) {
-        System.out.println(Arrays.deepToString(permutations(3)));
-    }
 
     /**
      * Erzeugt ein Array von allen Permutationen von {0,1,2,3,...,n-1}.
@@ -18,13 +14,20 @@ public class Permutations {
      * Permutation ist ein Array von Integern.
      */
     public static int[][] permutations(int n) {
-        if (n == 1) {
-            int[][] a = {{1}, {1}};
-            return a;
+        int[] arr = createArray(n);
+
+        int[][] result;
+        // auf ein leeres Array prüfen
+        if (n > 0) {
+            List<List<Integer>> list = new ArrayList<>();
+            permuteHelper(list, new ArrayList<>(), arr);
+            result = new int[list.size()][n];
+            matricize(list, result);
+        } else {
+            result = new int[0][0];
         }
-        int[] data = createArray(n);
-    permutation(data, data.length);
-        return new int[][]{data};
+        return result;
+
     }
 
     /**
@@ -34,39 +37,37 @@ public class Permutations {
      * @return
      */
     private static int[] createArray(int n) {
-        if (n == 1) {
-            int[] perm = new int[2];
-            perm[0] = 1;
-            perm[1] = 1;
-            return perm;
+        int[] newArray = new int[n];
+        for (int i = 0; i < newArray.length; i++) {
+            newArray[i] = i;
         }
-        int[] permutationArray = new int[n];
-        for (int i = 0; i < n; i++) {
-            permutationArray[i] = i;
-        }
-        return permutationArray;
+        return newArray;
     }
 
-    private static void permutation(int[] data, int size) {
-        if (size == 1) {
-            System.out.println(Arrays.toString(data));
-        }
-
-        for (int i = 0; i < size; i++) {
-            permutation(data, size - 1);
-
-            // if size is odd, swap 0th i.e (first) and (size-1)th i.e (last) element
-            if (size % 2 == 1) {
-                int temp = data[0];
-                data[0] = data[size - 1];
-                data[size - 1] = temp;
+    private static void permuteHelper(List<List<Integer>> list, List<Integer> resultList, int[] arr) {
+        if (resultList.size() == arr.length) {
+            list.add(new ArrayList<>(resultList));
+        } else {
+            for (int i = 0; i < arr.length; i++) {
+                if (resultList.contains(arr[i])) {
+                    // Wenn das element bereits in der Liste ist, wird es übersprungen
+                    continue;
+                }
+                //element wählen
+                resultList.add(arr[i]);
+                //untersuchen
+                permuteHelper(list, resultList, arr);
+                // element herausnehmen
+                resultList.remove(resultList.size() - 1);
             }
+        }
+    }
 
-            // If size is even, swap ith and (size-1)th i.e last element
-            else {
-                int temp = data[i];
-                data[i] = data[size - 1];
-                data[size - 1] = temp;
+    private static void matricize(List<List<Integer>> list, int[][] matrix) {
+        for (int row = 0; row < list.size(); row++) {
+            ArrayList rowlist = (ArrayList) list.get(row);
+            for (int col = 0; col < rowlist.size(); col++) {
+                matrix[row][col] = (int) rowlist.get(col);
             }
         }
     }

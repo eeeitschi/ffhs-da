@@ -25,6 +25,7 @@ public class TestParkettierung
 		for (int i = 2; i < n; i++)
 		{
 			fibs[i] = fibs[i-1].add(fibs[i-2]);
+		System.out.println("n = " + fibs[i]);
 		}
 		return fibs;
 	}
