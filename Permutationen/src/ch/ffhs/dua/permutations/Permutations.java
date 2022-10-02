@@ -18,40 +18,56 @@ public class Permutations {
      * Permutation ist ein Array von Integern.
      */
     public static int[][] permutations(int n) {
-        int[][] data = createArray(n);
-//
-//            if (n % 2 == 1) {
-//                int temp = permutationArray[n][0];
-//                permutationArray[n][0] = permutationArray[n][n - 1];
-//                permutationArray[n][n - 1] = temp;
-//            } else {
-//                int temp = permutationArray[n][n];
-//                permutationArray[n][i] = permutationArray[n][n - 1];
-//                permutationArray[n][n - 1] = temp;
-//            }
-        // TODO
-        return data;
+        if (n == 1) {
+            int[][] a = {{1}, {1}};
+            return a;
+        }
+        int[] data = createArray(n);
+    permutation(data, data.length);
+        return new int[][]{data};
     }
 
     /**
      * Erzeugt ein zweidimensionales Array mit der dimension [n][n] und füllt alle Werte
-     * Standardmässig ab.
+     *
      * @param n
      * @return
      */
-    private static int[][] createArray(int n) {
+    private static int[] createArray(int n) {
         if (n == 1) {
-            int[][] perm = new int[2][1];
-            perm[0][0] = 1;
-            perm[1][0] = 1;
+            int[] perm = new int[2];
+            perm[0] = 1;
+            perm[1] = 1;
             return perm;
         }
-        int[][] permutationArray = new int[n][n];
+        int[] permutationArray = new int[n];
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                permutationArray[i][j] = j;
+            permutationArray[i] = i;
+        }
+        return permutationArray;
+    }
+
+    private static void permutation(int[] data, int size) {
+        if (size == 1) {
+            System.out.println(Arrays.toString(data));
+        }
+
+        for (int i = 0; i < size; i++) {
+            permutation(data, size - 1);
+
+            // if size is odd, swap 0th i.e (first) and (size-1)th i.e (last) element
+            if (size % 2 == 1) {
+                int temp = data[0];
+                data[0] = data[size - 1];
+                data[size - 1] = temp;
+            }
+
+            // If size is even, swap ith and (size-1)th i.e last element
+            else {
+                int temp = data[i];
+                data[i] = data[size - 1];
+                data[size - 1] = temp;
             }
         }
-            return permutationArray;
     }
 }
