@@ -11,8 +11,8 @@ Gruppenmitglieder:
 ___
 ### Übersicht der Arbeiten als Nachbereitung zu den PVAs:
 - [x] Implementierungsaufgabe zu doppelt geketteten Listen (PVA1)
-- [ ] Implementierungsaufgabe zu Permutationen (PVA2)
-- [ ] Implementierungsaufgabe zu Parkettierungen (PVA2)
+- [x] Implementierungsaufgabe zu Permutationen (PVA2)
+- [x] Implementierungsaufgabe zu Parkettierungen (PVA2)
 - [ ] Aufgaben zu den Sortierverfahren (PVA3)
 - [ ] Aufgabe zur binären Suche (PVA4)
 - [ ] Traversierung von Bäumen (PVA4)
@@ -26,11 +26,16 @@ Die Unit-Tests wurden ergänzt, damit die contains(o), remove(o) und clear()-Met
 
 ---
 #### Implementierungsaufgabe zu Permutationen (PVA2)
-Implementierung ausstehend...
+Die Aufgabe wurde anhand dem Markdown "Aufgabenstellung zur Rekusion.md" erarbeitet.
+Der Sourcecode ist im selben Verzeichnis zu finden.
 
 ---
 #### Implementierungsaufgabe zu Parkettierungen (PVA2)
-Implementierung ausstehend...
+Die Aufgabe wurde anhand dem Markdown "Aufgabenstellung Parkettierung.md" gelöst.
+Ein Teil der Unit-Tests (für die Extrem-Werte), wurde ausgeklammert, damit die Laufzeit
+für die Tests nicht zu lange sind.
+
+Achtung: Keine optimierte Lösung für den Algorithmus.
 
 ---
 #### Aufgaben zu den Sortierverfahren (PVA3)
