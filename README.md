@@ -27,13 +27,13 @@ Die Unit-Tests wurden ergänzt, damit die contains(o), remove(o) und clear()-Met
 ---
 #### Implementierungsaufgabe zu Permutationen (PVA2)
 Die Aufgabe wurde anhand dem Markdown "Aufgabenstellung zur Rekusion.md" erarbeitet.
-Der Sourcecode ist im selben Verzeichnis zu finden.
+Der Sourcecode ist im originalen Verzeichnis Permutationensrc/ch.ffhs.dua.permutations zu finden.
 
 ---
 #### Implementierungsaufgabe zu Parkettierungen (PVA2)
 Die Aufgabe wurde anhand dem Markdown "Aufgabenstellung Parkettierung.md" gelöst.
-Ein Teil der Unit-Tests (für die Extrem-Werte), wurde ausgeklammert, damit die Laufzeit
-für die Tests nicht zu lange sind.
+Ein Teil der Unit-Tests (für die sehr grossen BigInteger-Werte), wurde ausgeklammert, <br> 
+damit die Laufzeiten für die Tests nicht zu lange sind.
 
 Achtung: Keine optimierte Lösung für den Algorithmus.
 

@@ -16,35 +16,36 @@ public class Permutations {
         if (n == 0) return new int[0][0];
 
         // Erzeugt ein Array mit der dimension [n] und füllt jedes Element mit dem eigenen Index ab.
-        int[] newArray = new int[n];
-        for (int i = 0; i < newArray.length; i++) {
-            newArray[i] = i;
+        int[] initialData = new int[n];
+        for (int i = 0; i < initialData.length; i++) {
+            initialData[i] = i;
         }
 
         List<List<Integer>> list = new ArrayList<>();
-        permutationBuilder(list, new ArrayList<>(), newArray);
+        permutationBuilder(list, new ArrayList<>(), initialData);
         return convert2DListTo2DArray(list);
     }
 
     /**
      * Erstellt eine Permutation im Rekusiven verfahren und gibt die Lösung zurück.
-     * @param list
-     * @param resultList
-     * @param arr
+     * @param finalResults
+     * @param progressingResults
+     * @param providedArr
      */
-    private static void permutationBuilder(List<List<Integer>> list, List<Integer> resultList, int[] arr) {
-        if (resultList.size() == arr.length) {
-            list.add(new ArrayList<>(resultList));
+    private static void permutationBuilder(List<List<Integer>> finalResults, List<Integer> progressingResults, int[] providedArr) {
+        // Wenn alle Elemente untersucht worden sind, die Lösung der finalen Liste hinzufügen.
+        if (progressingResults.size() == providedArr.length) {
+            finalResults.add(new ArrayList<>(progressingResults));
         } else {
-            for (int i = 0; i < arr.length; i++) {
+            for (int i = 0; i < providedArr.length; i++) {
                 // überspringe das Element wenn es bereits in der Liste enthalten ist.
-                if (resultList.contains(arr[i])) continue;
-                // Element auswählen
-                resultList.add(arr[i]);
-                // Neues Element in der Rekusion untersuchen
-                permutationBuilder(list, resultList, arr);
-                // Element aus der Liste entfernen
-                resultList.remove(resultList.size() - 1);
+                if (progressingResults.contains(providedArr[i])) continue;
+                // Element auswählen und den Resultaten hinzufügen.
+                progressingResults.add(providedArr[i]);
+                // Neues Element in der Rekusion untersuchen.
+                permutationBuilder(finalResults, progressingResults, providedArr);
+                // Element aus den Resultaten entfernen.
+                progressingResults.remove(progressingResults.size() - 1);
             }
         }
     }
