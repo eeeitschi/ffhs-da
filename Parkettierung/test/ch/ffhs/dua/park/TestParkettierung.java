@@ -37,6 +37,8 @@ public class TestParkettierung
 		assertEquals(BigInteger.valueOf(12988816L), Parkettierung.anzahlParkettierungen(8,8));
 		assertEquals(BigInteger.valueOf(108435745L), Parkettierung.anzahlParkettierungen(8,9));
 		assertEquals(BigInteger.valueOf(108435745L), Parkettierung.anzahlParkettierungen(9,8));
+
+		//Die beiden nachfolgenden Tests wurden ausgeklammert das die berechnung sehr lange dauert.
 		//assertEquals(BigInteger.valueOf(258584046368L), Parkettierung.anzahlParkettierungen(10,10));
 		//assertEquals(new BigInteger("2444888770250892795802079170816"), Parkettierung.anzahlParkettierungen(16,16));
 		System.out.println("Done");

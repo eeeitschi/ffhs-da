@@ -36,29 +36,30 @@ public class Parkettierung {
             }
         }
 
-        // Retourniere 1 wenn alle Felder erfolgreich Belegt wurden.
+        // Retourniere 1 wenn alle Felder erfolgreich belegt wurden.
         if (numMaxRow == 0) return 1;
 
-        // Legt einen Stein horizontal in das Spielfend wenn es in der längsten Reihe möglich ist.
+        // Legt einen Stein horizontal in das Spielfend wenn es in der gewählten Reihe möglich ist.
         if (numMaxRow >= 2) {
-            // Kopiere das array und fülle es mit den initialen werten ab.
+            // Kopiere das array (deep copy) und berechne die neuen Reihenlängen.
             int[] newHorizontalRowCounter = new int[columnCounter.length];
             System.arraycopy(columnCounter, 0, newHorizontalRowCounter, 0, columnCounter.length);
-            // RowCount um einen horizontalen Stein (2) verringern und sum um eins erhöhen.
             newHorizontalRowCounter[indexMaxRow] = newHorizontalRowCounter[indexMaxRow] - 2;
+            // Starte eine neue Rekusionsebene.
             successfulOccu += placeOneDominoStone(newHorizontalRowCounter);
         }
 
-        // Legt einen Stein vertikal in das Spielfeld wenn es in den nächsten beiden Reihen möglich ist.
+        // Legt einen Stein vertikal in das Spielfeld wenn es in gewählten sowie der darauffolgenden Reihe möglich ist.
         if ((columnCounter.length - 1) > indexMaxRow) {
             // Testet ob noch eine gleich lange Zeile unterhalb verüfgbar ist.
             if (columnCounter[indexMaxRow] <= columnCounter[indexMaxRow + 1]) {
                 if (numMaxRow >= 1) {
-                    // Kopiere das array und fülle es mit den initialen werten ab.
+                    // Kopiere das array (deepcopy) und berechne die neuen Reihenlängen.
                     int[] rowCopy2 = new int[columnCounter.length];
                     System.arraycopy(columnCounter, 0, rowCopy2, 0, columnCounter.length);
                     rowCopy2[indexMaxRow] = rowCopy2[indexMaxRow] - 1;
                     rowCopy2[indexMaxRow + 1] = rowCopy2[indexMaxRow + 1] - 1;
+                    // Starte eine neue Rekusionsebene.
                     successfulOccu += placeOneDominoStone(rowCopy2);
                 }
             }
