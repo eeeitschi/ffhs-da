@@ -1,6 +1,5 @@
 package ch.ffhs.dua.permutations;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -9,11 +8,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class PermTest 
 {
 	
 	
-	@Test 
+	@Test
 	public void testPerm0()
 	{
 		int[][] result = Permutations.permutations(0);
