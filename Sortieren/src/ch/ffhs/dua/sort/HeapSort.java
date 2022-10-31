@@ -8,7 +8,7 @@ public class HeapSort
 	 */
 	public static void sort(int[] array)
 	{
-		sort(array, 0, array.length - 1);
+		sort(array, 0, array.length);
 	}
 	
 	/**
@@ -19,7 +19,23 @@ public class HeapSort
 	 */
 	public static void sort(int[] array, int start, int end)
 	{
-		// TODO
+		int n = array.length;
+
+
+		//Rearrange array (building heap)
+		for (int i = n / 2 - 1; i >= 0; i--) {
+			makeHeap(array, n, i);
+		}
+
+		//Extract elements from heap one by one
+		for (int i = n - 1; i >= 0; i--) {
+			//Current root moved to the end
+			int tmp = array[0];
+			array[0] = array[i];
+			array[i] = tmp;
+
+			makeHeap(array, i, 0);//calling max heapify on the heap reduced
+		}
 	}
 	
 	/**
@@ -32,7 +48,28 @@ public class HeapSort
 	 */
 	public static void makeHeap(int[] array, int start, int end)
 	{
-		// TODO
+		if(end < 0) return;
+		int max = end; //Initialize max as root
+		int leftChild = 2 * end + 1;
+		int rightChild = 2 * end + 2;
+
+		//If left child is greater than root
+		if (leftChild < start && array[leftChild] > array[max])
+			max = leftChild;
+
+		//If right child is greater than max
+		if (rightChild < start && array[rightChild] > array[max])
+			max = rightChild;
+
+		//If max is not root
+		if (max != end) {
+			int swap = array[end];
+			array[end] = array[max];
+			array[max] = swap;
+
+			//heapify the affected sub-tree recursively
+			makeHeap(array, start, max);
+		}
 	}
 	
 	/**
