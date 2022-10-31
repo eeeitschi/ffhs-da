@@ -9,7 +9,8 @@ public class QuickSort
 	 */
 	public static void sort(int[] array)
 	{
-		// TODO
+		// Starte die Sortierung mit dem ersten und letzten Index.
+		sort(array, 0, array.length - 1);
 	}
 	
 	/**
@@ -20,10 +21,16 @@ public class QuickSort
 	 */
 	public static void sort(int[] array, int start, int end)
 	{
-		// TODO
+		// Testet ob das ende der Rekusion erreicht wurde.
+		if (start >= end) return;
+
+		int piv = findPivot(array, start, end);
+		int pivotPos = partition(array, start, end, piv);
+		sort(array, start, pivotPos - 1);
+		sort(array, pivotPos + 1, end);
 	}
-	
-	/** 
+
+	/**
 	 * Schwellwert, bei welcher Arraygrösse in der Rekursion InsertSort 
 	 * statt Quicksort aufgerufen werden sollte. 
 	 */
@@ -68,10 +75,33 @@ public class QuickSort
 	 */
 	static int partition(int[] array, int start, int end, int piv)
 	{
-		// TODO Verwenden Sie diese Mehode für Quicksort
-		return -1;
+		// choose the rightmost element as pivot
+		int pivot = piv;
+
+		// pointer for greater element
+		int i = (start - 1);
+
+		// traverse through all elements
+		// compare each element with pivot
+		for (int j = start; j < end; j++) {
+			if (array[j] <= pivot) {
+
+				// if element smaller than pivot is found
+				// swap it with the greatr element pointed by i
+				i++;
+
+				// swapping element at i with element at j
+				swap(array, i, j);
+			}
+		}
+
+		// swapt the pivot element with the greater element specified by i
+		swap(array, i + 1, end);
+
+		// return the position from where partition is done
+		return (i + 1);
 	}
-	
+
 	/**
 	 * Hilfsmethode zum Vertauschen zweier Array-Elemente
 	 * @param array
@@ -96,7 +126,9 @@ public class QuickSort
 	 */
 	static int findPivot(int[] array, int start, int end)
 	{
-		// TODO
-		return start;
+		if (start < end) {
+			return array[end];
+		}
+		return -1;
 	}
 }

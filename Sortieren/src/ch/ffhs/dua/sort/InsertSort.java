@@ -14,15 +14,13 @@ public class InsertSort
 			int key = array[step];
 			int j = step - 1;
 
-			// Compare key with each element on the left of it until an element smaller than
-			// it is found.
-			// For descending order, change key<array[j] to key>array[j].
+			// Vergleicht den Schlüssel mit jedem Element links bis ein kleineres Element gefunden wird.
 			while (j >= 0 && key < array[j]) {
 				array[j + 1] = array[j];
 				--j;
 			}
 
-			// Place key at after the element just smaller than it.
+			// Platziert den Schlüssel nach dem Element das kleiner ist.
 			array[j + 1] = key;
 		}
 	}
@@ -36,7 +34,22 @@ public class InsertSort
 	 */
 	public static void sort(int[] array, int start, int end)
 	{
-		// TODO
+		// Prüft ob der end-Index innerhalb der Array-Länge ist.
+		if(array.length < end) return;
+
+		for (int step = start; step < end; step++) {
+			int key = array[step];
+			int j = step - 1;
+
+			// Vergleicht den Schlüssel mit jedem Element links bis ein kleineres Element gefunden wird.
+			while (j >= 0 && key < array[j]) {
+				array[j + 1] = array[j];
+				--j;
+			}
+
+			// Platziert den Schlüssel nach dem Element das kleiner ist.
+			array[j + 1] = key;
+		}
 	}
 
 }
