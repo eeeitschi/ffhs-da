@@ -1,6 +1,8 @@
 package ch.ffhs.dua.sort;
 
-public class HeapSort 
+import java.util.Arrays;
+
+public class HeapSort
 {
 	/**
 	 * Sortiert ein Array mit Heapsort.
@@ -19,16 +21,13 @@ public class HeapSort
 	 */
 	public static void sort(int[] array, int start, int end)
 	{
-		int n = array.length;
-
-
 		//Rearrange array (building heap)
-		for (int i = n / 2 - 1; i >= 0; i--) {
-			makeHeap(array, n, i);
+		for (int i = end / 2 - 1; i >= start; i--) {
+			makeHeap(array, end, i);
 		}
 
 		//Extract elements from heap one by one
-		for (int i = n - 1; i >= 0; i--) {
+		for (int i = end - 1; i >= start; i--) {
 			//Current root moved to the end
 			int tmp = array[0];
 			array[0] = array[i];
