@@ -47,27 +47,9 @@ public class HeapSort
 	 */
 	public static void makeHeap(int[] array, int start, int end)
 	{
-		if(end < 0) return;
-		int max = end; //Initialize max as root
-		int leftChild = 2 * end + 1;
-		int rightChild = 2 * end + 2;
-
-		//If left child is greater than root
-		if (leftChild < start && array[leftChild] > array[max])
-			max = leftChild;
-
-		//If right child is greater than max
-		if (rightChild < start && array[rightChild] > array[max])
-			max = rightChild;
-
-		//If max is not root
-		if (max != end) {
-			int swap = array[end];
-			array[end] = array[max];
-			array[max] = swap;
-
-			//heapify the affected sub-tree recursively
-			makeHeap(array, start, max);
+		// bubble down from the leaf nodes up to the top
+		for (int index = array.length - 1; index >= 0; index--) {
+			sink(array, start, array.length, index);
 		}
 	}
 	
@@ -85,7 +67,38 @@ public class HeapSort
 	 */
 	static void sink(int[] array, int start, int end, int index)
 	{
-		// TODO	(Implementieren Sie diese Methode, wenn Sie sie für die Sort-Methoden brauchen.		
+		// TODO	(Implementieren Sie diese Methode, wenn Sie sie für die Sort-Methoden brauchen.		+
+		while (index < end) {
+			int leftIndex  = leftChild(index, 1);
+			int rightIndex = rightChild(index, 2);
+
+			// if we don't have any child nodes, we can stop
+			if (leftIndex >= end) {
+				break;
+			}
+
+			// find the larger of the two children
+			int largerChildIndex = leftIndex;
+			if (rightIndex < end && array[leftIndex] < array[rightIndex]) {
+				largerChildIndex = rightIndex;
+			}
+
+			// are we larger than our children?
+			// if so, swap with the larger child.
+			if (array[index] < array[largerChildIndex]) {
+				int tmp = array[largerChildIndex];
+				array[largerChildIndex] = array[index];
+				array[index] = tmp;
+
+				// continue bubbling down
+				index = largerChildIndex;
+			}
+			else {
+
+				// we're larger than both children, so we're done
+				break;
+			}
+		}
 	}
 	
 	/**
@@ -99,7 +112,15 @@ public class HeapSort
 	 */
 	public static void removeHeapRoot(int[] array, int start, int end)
 	{
-		// TODO	(Implementieren Sie diese Methode, wenn Sie sie für die Sort-Methoden brauchen.		
+		// TODO	(Implementieren Sie diese Methode, wenn Sie sie für die Sort-Methoden brauchen.
+		// grab the largest value from the root
+		int maxValue = array[0];
+
+		// move the last item in the heap into the root position
+		array[0] = array[array.length - 1];
+
+		// and bubble down from the root to restore the heap
+		makeHeap(array, array.length - 1, 0);
 	}
 	
 	/**
