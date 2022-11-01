@@ -9,7 +9,7 @@ public class HeapSort {
      * @param array
      */
     public static void sort(int[] array) {
-        sort(array, 0, array.length);
+        sort(array, 0, array.length - 1);
     }
 
     /**
@@ -20,27 +20,14 @@ public class HeapSort {
      * @param start Index des letzten Elementes des zu sortierenden Teils.
      */
     public static void sort(int[] array, int start, int end) {
-        //Rearrange array (building heap)
-        for (int i = end / 2 - 1; i >= start; i--) {
-            makeHeap(array, end, i);
-        }
 
-        //Extract elements from heap one by one
-        for (int i = end - 1; i >= start; i--) {
-            //Current root moved to the end
-            int tmp = array[0];
-            array[0] = array[i];
-            array[i] = tmp;
-
-            makeHeap(array, i, 0);//calling max heapify on the heap reduced
-        }        // Heap sort
         for (int i = end; i >= 0; i--) {
             int temp = array[0];
             array[0] = array[i];
             array[i] = temp;
 
             // Heapify root element
-            sink(array,start, i, 0);
+            sink(array, start, i, 0);
         }
     }
 
@@ -54,7 +41,9 @@ public class HeapSort {
      * @param end   Index des letzten Elementes des Stücks, aus dem ein Heap erzeugt werden sollte.
      */
     public static void makeHeap(int[] array, int start, int end) {
-        for (int i = end / 2; i >= 0; i--) {
+
+        int n = end - start;
+        for (int i = n / 2; i >= start; i--) {
             sink(array, start, end, i);
         }
 
@@ -77,8 +66,8 @@ public class HeapSort {
         // Find largest among root, left child and right child
         // Find largest among root, left child and right child
         int largest = index;
-        int l = 2 * index + 1;
-        int r = 2 * index + 2;
+        int l = leftChild(index, start - 1);
+        int r = rightChild(index, start -1);
 
         if (l <= end && array[l] > array[largest])
             largest = l;
