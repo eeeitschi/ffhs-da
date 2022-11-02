@@ -41,10 +41,9 @@ public class HeapSort {
      * @param end   Index des letzten Elementes des Stücks, aus dem ein Heap erzeugt werden sollte.
      */
     public static void makeHeap(int[] array, int start, int end) {
-
         int n = end - start;
-        for (int i = n / 2; i >= start; i--) {
-            sink(array, start, end, i);
+        for (int i = n / 2; i >= 0; i--) {
+            sink(array, start, end, i+start);
         }
 
     }
@@ -66,8 +65,8 @@ public class HeapSort {
         // Find largest among root, left child and right child
         // Find largest among root, left child and right child
         int largest = index;
-        int l = leftChild(index, start - 1);
-        int r = rightChild(index, start -1);
+        int l = leftChild(index, start - 1 );
+        int r = rightChild(index, start - 1);
 
         if (l <= end && array[l] > array[largest])
             largest = l;
