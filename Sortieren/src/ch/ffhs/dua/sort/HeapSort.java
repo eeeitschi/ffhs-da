@@ -20,15 +20,12 @@ public class HeapSort {
      * @param start Index des letzten Elementes des zu sortierenden Teils.
      */
     public static void sort(int[] array, int start, int end) {
-        System.out.println("start -> " + Arrays.toString(array));
         makeHeap(array, start, end);
-        System.out.println("maxhe -> " + Arrays.toString(array));
 
         for (int i = end; i >= 0; i--) {
             int temp = array[0];
             array[0] = array[i];
             array[i] = temp;
-            System.out.println("step " + i + "-> " + Arrays.toString(array));
             // Heapify root element
             sink(array, 0, i, 0);
         }
@@ -45,6 +42,7 @@ public class HeapSort {
      * @param end   Index des letzten Elementes des Stücks, aus dem ein Heap erzeugt werden sollte.
      */
     public static void makeHeap(int[] array, int start, int end) {
+        end = end + 1;
         for (int i = end / 2; i >= 0; i--) {
             sink(array, start, end, i + start);
         }
@@ -66,18 +64,17 @@ public class HeapSort {
     static void sink(int[] array, int start, int end, int index) {
         // Find largest among root, left child and right child
         int largest = index;
-        int l = leftChild(index, start - 1);
-        int r = rightChild(index, start - 1);
+        int l = 2 * index + 1 - start;
+        int r = 2 * index + 2 - start;
 
-        if (l <= end && array[l] > array[largest]) largest = l;
-        if (r <= end && array[r] > array[largest]) largest = r;
+        if (l < end && array[l] > array[largest]) largest = l;
+        if (r < end && array[r] > array[largest]) largest = r;
 
         // Swap and continue heapifying if root is not largest
         if (largest != index) {
             int swap = array[index];
             array[index] = array[largest];
             array[largest] = swap;
-
             sink(array, start, end, largest);
         }
     }
