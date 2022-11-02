@@ -45,8 +45,7 @@ public class HeapSort {
      * @param end   Index des letzten Elementes des Stücks, aus dem ein Heap erzeugt werden sollte.
      */
     public static void makeHeap(int[] array, int start, int end) {
-        int n = end - start;
-        for (int i = n / 2; i >= 0; i--) {
+        for (int i = end / 2; i >= 0; i--) {
             sink(array, start, end, i + start);
         }
     }
