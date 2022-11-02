@@ -107,11 +107,10 @@ public class SortTest
 		{
 			int[] arrayC = array.clone();
 			HeapSort.makeHeap(array, 0, array.length - 1);
-			System.out.println("Result: " + Arrays.toString(array));
 			assertTrue(isHeap(array));
-/*			Arrays.sort(array);
+			Arrays.sort(array);
 			Arrays.sort(arrayC);
-			assertArrayEquals(arrayC, array);*/
+			assertArrayEquals(arrayC, array);
 		}
 		
 		int[] array;

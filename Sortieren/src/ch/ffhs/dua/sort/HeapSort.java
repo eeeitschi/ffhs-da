@@ -29,7 +29,6 @@ public class HeapSort {
             // Heapify root element
             sink(array, 0, i, 0);
         }
-        System.out.println("end   -> " + Arrays.toString(array));
     }
 
     /**
@@ -92,12 +91,13 @@ public class HeapSort {
     public static void removeHeapRoot(int[] array, int start, int end) {
         // Get the last element
         int lastElement = array[end];
-        // Replace root with last element
+        // Replace root with last element and vice versa
+        array[end] = array[0];
         array[0] = lastElement;
         // Decrease size of heap by 1
         end = end - 1;
         // heapify the root node
-        sink(array,start, end, 0);
+        sink(array, start, end + 1, 0);
     }
 
     /**
