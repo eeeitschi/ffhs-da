@@ -20,19 +20,19 @@ public class HeapSort {
      * @param start Index des letzten Elementes des zu sortierenden Teils.
      */
     public static void sort(int[] array, int start, int end) {
-        System.out.println(Arrays.toString(array));
+        System.out.println("start -> " + Arrays.toString(array));
         makeHeap(array, start, end);
-        System.out.println(Arrays.toString(array));
+        System.out.println("maxhe -> " + Arrays.toString(array));
 
         for (int i = end; i >= 0; i--) {
             int temp = array[0];
             array[0] = array[i];
             array[i] = temp;
-            System.out.println(Arrays.toString(array));
+            System.out.println("step " + i + "-> " + Arrays.toString(array));
             // Heapify root element
-            sink(array, start, i, 0);
+            sink(array, 0, i, 0);
         }
-        System.out.println(Arrays.toString(array));
+        System.out.println("end   -> " + Arrays.toString(array));
     }
 
     /**
