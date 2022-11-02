@@ -94,7 +94,14 @@ public class HeapSort {
      * @param end   Index des letzten Heap-Elements.
      */
     public static void removeHeapRoot(int[] array, int start, int end) {
-        // TODO	(Implementieren Sie diese Methode, wenn Sie sie für die Sort-Methoden brauchen.
+        // Get the last element
+        int lastElement = array[end];
+        // Replace root with last element
+        array[0] = lastElement;
+        // Decrease size of heap by 1
+        end = end - 1;
+        // heapify the root node
+        sink(array,start, end, 0);
     }
 
     /**
