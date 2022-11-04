@@ -13,7 +13,7 @@ ___
 - [x] Implementierungsaufgabe zu doppelt geketteten Listen (PVA1)
 - [x] Implementierungsaufgabe zu Permutationen (PVA2)
 - [x] Implementierungsaufgabe zu Parkettierungen (PVA2)
-- [ ] Aufgaben zu den Sortierverfahren (PVA3)
+- [x] Aufgaben zu den Sortierverfahren (PVA3)
 - [ ] Aufgabe zur binären Suche (PVA4)
 - [ ] Traversierung von Bäumen (PVA4)
 - [ ] Implementierungsaufgabe zu HashSets (PVA5)
@@ -27,7 +27,7 @@ Die Unit-Tests wurden ergänzt, damit die contains(o), remove(o) und clear()-Met
 ---
 #### Implementierungsaufgabe zu Permutationen (PVA2)
 Die Aufgabe wurde anhand dem Markdown "Aufgabenstellung zur Rekusion.md" erarbeitet.
-Der Sourcecode ist im originalen Verzeichnis Permutationensrc/ch.ffhs.dua.permutations zu finden.
+Der Sourcecode ist im originalen Verzeichnis Permutationen src/ch.ffhs.dua.permutations zu finden.
 
 ---
 #### Implementierungsaufgabe zu Parkettierungen (PVA2)
@@ -35,11 +35,12 @@ Die Aufgabe wurde anhand dem Markdown "Aufgabenstellung Parkettierung.md" gelös
 Ein Teil der Unit-Tests (für die sehr grossen BigInteger-Werte), wurde ausgeklammert, <br> 
 damit die Laufzeiten für die Tests nicht zu lange sind.
 
-Achtung: Keine optimierte Lösung für den Algorithmus.
+Achtung: Keine optimierte Lösung für diesen Algorithmus.
 
 ---
 #### Aufgaben zu den Sortierverfahren (PVA3)
-Implementierung ausstehend...
+Die Aufgabe wurde anhand dem Markdown "Aufgabe zu Soertieralgorithmen.md" gelöst.
+Der Sourcecode ist im originalen Verzeichnis Sortieren sr/ch.ffhs.dua.sort zu finden.
 
 ---
 #### Aufgabe zur binären Suche (PVA4)
