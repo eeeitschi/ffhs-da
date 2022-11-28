@@ -10,57 +10,57 @@ public class BinSearch {
      * @return Ein Paar mit kleinestem und grösstem Index oder
      * null, wenn der gegebene Wert im array nicht vorkommt.
      */
-
-    public static void main(String[] args) {
-        int[] arr = new int[]{0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2};
-        search(arr, 0);
-
-        // Result: with 0 --> 0, 4
-        // Result: with 1 --> 5, 7
-        // Result: with 2 --> 8, 13
-    }
-
     public static Pair search(int[] array, int value) {
-/*        int lower = -1;
-        int higher = -1;
-
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == value) {
-                if (lower < 0) lower = i;
-                else higher = i;
-            }
-        }
-
-        if (lower >= 0) {
-            if (higher >= 0) return new Pair(lower, higher);
-            else return new Pair(lower, lower);
-        }*/
-
-        rank(array, 0, array.length, value);
-        return null;
+        // Tested ob das Array korrekt initialisiert wuerde.
+        if (array.length == 0) return null;
+        // Startet den Rekusions-Algorithmus.
+        return rank(array, 0, array.length, value);
     }
 
-    public static int rank(int[] array, int low, int high, int value) {
+    /**
+     * Durchsucht ein Array in rekursiver Vorgehensweise und sucht den kleinsten
+     * sowie grössten Index an welcher die parametrisierte Zahl vorkommt.
+     *
+     * @param array Das array das durchsucht werden soll
+     * @param low   Die untere Grenze der durchsuchung
+     * @param high  Die obere Grenze der durchsuchung
+     * @param value Der Wert nach dem gesucht werden soll..
+     * @return Gibt ein Paar zurück mit dem oberen und unteren Maximum
+     */
+    public static Pair rank(int[] array, int low, int high, int value) {
+        // Berechnet den mittleren Index des Arrays.
         int mid = low + (high - low) / 2;
-        int temp1 = -1;
-        int temp2 = -1;
+        Pair lowPair;
+        Pair highPair;
 
+        // Prüft ob der mittlere Index bereits auf dem "low" Value liegt.
         if (low < mid) {
-            temp1 = rank(array, low, mid, value);
+            // Ruft eine weitere Rekusionsstufe auf.
+            lowPair = rank(array, low, mid, value);
         } else {
-            if (array[low] == value) return low;
-            else return -1;
+            // Erstelle neues Paar wenn der gesuchte Wert vorkommt.
+            if (array[low] == value) return new Pair(low, mid);
+            else return null;
         }
 
+        // Prüft ob der mittlere Index bereits auf dem "high" Value liegt.
         if (mid < high) {
-            temp2 = rank( array, mid, high, value);
+            // Ruft eine weitere Rekusionsstufe auf.
+            highPair = rank(array, mid, high, value);
         } else {
-            if (array[mid] == value) return low;
-            else return -1;
+            // Erstelle neues Paar wenn der gesuchte Wert vorkommt.
+            if (array[mid] == value) return new Pair(mid, high);
+            else return null;
         }
 
-        System.out.println("temp1: " + temp1 + " temp2: " + temp2);
-        return -1;
-
+        // Prüft die erhaltenen Paare nach "null" und erstellt aus den Extremwerten ein neues Paar.
+        if (lowPair != null && highPair != null) {
+            return new Pair(
+                    Math.min(lowPair.lower, highPair.lower),
+                    Math.max(lowPair.higher, highPair.higher)
+            );
+        }
+        else if (lowPair == null && highPair != null) return highPair;
+        else return lowPair;
     }
 }
