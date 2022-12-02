@@ -14,8 +14,8 @@ ___
 - [x] Implementierungsaufgabe zu Permutationen (PVA2)
 - [x] Implementierungsaufgabe zu Parkettierungen (PVA2)
 - [x] Aufgaben zu den Sortierverfahren (PVA3)
-- [ ] Aufgabe zur binären Suche (PVA4)
-- [ ] Traversierung von Bäumen (PVA4)
+- [x] Aufgabe zur binären Suche (PVA4)
+- [x] Traversierung von Bäumen (PVA4)
 - [ ] Implementierungsaufgabe zu HashSets (PVA5)
 
 
@@ -44,11 +44,13 @@ Der Sourcecode ist im originalen Verzeichnis Sortieren sr/ch.ffhs.dua.sort zu fi
 
 ---
 #### Aufgabe zur binären Suche (PVA4)
-Implementierung ausstehend...
+Die Aufgabe wurde anhand dem Markdown "Aufgabe zur binären Suche.md" gelöst.
+Der Sourcecode ist im originalen Verzeichnis Sortieren sr/ch.ffhs.dua.binSearch zu finden.
 
 ---
 #### Traversierung von Bäumen (PVA4) <br>
-Implementierung ausstehend...
+Die Aufgabe wurde anhand dem Markdown "Aufgabe zu Bäumen.md" gelöst.
+Der Sourcecode ist im originalen Verzeichnis Sortieren sr/ch.ffhs.dua.tree zu finden.
 
 ---
 #### Implementierungsaufgabe zu HashSets (PVA5)
