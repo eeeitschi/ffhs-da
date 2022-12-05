@@ -10,19 +10,12 @@ import java.util.Set;
  */
 public class LSHashSet<E> extends SetBasic<E>
 {
-    private int size, maxSize;
-    private Object[] keys;
-    private Object[] vals;
-
-    public LSHashSet(int maxSize) {
-        size = 0;
-        this.maxSize = maxSize;
-        keys = new Object[maxSize];
-        vals = new Object[maxSize];
-    }
+    private int size = 0;
+    private Object[] keys = new Object[16];
+    private Object[] vals = new Object[16];
 
     private int hash(Object key) {
-        return key.hashCode() % maxSize;
+        return key.hashCode() % keys.length;
     }
 
 
@@ -33,7 +26,7 @@ public class LSHashSet<E> extends SetBasic<E>
         while (keys[i] != null) {
             if (keys[i].equals(obj))
                 return true;
-            i = (i + 1) % maxSize;
+            i = (i + 1) % keys.length;
         }
         return false;
     }
@@ -58,7 +51,7 @@ public class LSHashSet<E> extends SetBasic<E>
                 return true;
             }
 
-            i = (i + 1) % maxSize;
+            i = (i + 1) % keys.length;
 
         }
         // solange i nicht temp entspricht
@@ -75,12 +68,12 @@ public class LSHashSet<E> extends SetBasic<E>
         // Position suchen und löschen
         int i = hash(o);
         while (!o.equals(keys[i]))
-            i = (i + 1) % maxSize;
+            i = (i + 1) % keys.length;
         keys[i] = vals[i] = null;
 
         // Alle schlüssel neu hashen
-        for (i = (i + 1) % maxSize; keys[i] != null;
-             i = (i + 1) % maxSize) {
+        for (i = (i + 1) % keys.length; keys[i] != null;
+             i = (i + 1) % keys.length) {
             Object tmp1 = keys[i];
             keys[i] = vals[i] = null;
             size--;

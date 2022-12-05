@@ -13,7 +13,7 @@ public class LLHashSet<E> extends SetBasic<E> {
 
     private int size = 0;
 
-    private CollisionEntry[] collisionBucket;
+    private CollisionEntry[] collisionBucket = new CollisionEntry[16];
 
 
     private static class CollisionEntry {
