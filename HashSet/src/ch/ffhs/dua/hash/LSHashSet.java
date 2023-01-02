@@ -1,27 +1,29 @@
 package ch.ffhs.dua.hash;
-import java.util.ArrayList;
+
 import java.util.Iterator;
-import java.util.Set;
+import java.util.NoSuchElementException;
 
 /**
  * Teil-Implementierung einer HashSet Klasse.
  * Kollisionen sollen mit linearer Sondierung behandelt werden.
+ *
  * @param <E>
  */
-public class LSHashSet<E> extends SetBasic<E>
-{
+public class LSHashSet<E> extends SetBasic<E> {
     private int size = 0;
-    private Object[] keys = new Object[16];
-    private Object[] vals = new Object[16];
+    private Object[] keys = new Object[50];
+    private Object[] vals = new Object[50];
 
     private int hash(Object key) {
-        return key.hashCode() % keys.length;
+        int index = key.hashCode();
+        if (index < 0) {
+            index = -index;
+        }
+        return index % keys.length;
     }
 
-
     @Override
-    public boolean contains(Object obj)
-    {
+    public boolean contains(Object obj) {
         int i = hash(obj);
         while (keys[i] != null) {
             if (keys[i].equals(obj))
@@ -32,8 +34,7 @@ public class LSHashSet<E> extends SetBasic<E>
     }
 
     @Override
-    public boolean add(Object e)
-    {
+    public boolean add(Object e) {
         int tmp = hash(e);
         int i = tmp;
 
@@ -60,8 +61,7 @@ public class LSHashSet<E> extends SetBasic<E>
     }
 
     @Override
-    public boolean remove(Object o)
-    {
+    public boolean remove(Object o) {
         if (!contains(o))
             return false;
 
@@ -84,30 +84,48 @@ public class LSHashSet<E> extends SetBasic<E>
     }
 
     @Override
-    public Iterator<E> iterator()
-    {
-        // TODO
-        return null;
+    public Iterator<E> iterator() {
+        return new LSHashSetIterator();
     }
 
     @Override
-    public int size()
-    {
+    public int size() {
         return size;
     }
 
     @Override
-    public boolean isEmpty()
-    {
+    public boolean isEmpty() {
         return size == 0;
     }
 
     @Override
-    public void clear()
-    {
+    public void clear() {
         keys = null;
         vals = null;
         size = 0;
     }
 
+    class LSHashSetIterator implements Iterator {
+        private int currentKeyIndex;
+
+        public LSHashSetIterator() {
+            currentKeyIndex = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            // currentEntry node hat weiteren Eintrag
+            if (currentKeyIndex < size) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        @Override
+        public Object next() {
+            currentKeyIndex++;
+            return vals[currentKeyIndex];
+        }
+    }
 }

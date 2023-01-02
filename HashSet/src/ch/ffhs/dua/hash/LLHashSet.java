@@ -6,21 +6,31 @@ import java.util.NoSuchElementException;
 /**
  * Teil-Implementierung einer HashSet Klasse.
  * Kollisionen sollen mit geketten Listen behandelt werden.
- *
  * @param <E>
  */
 public class LLHashSet<E> extends SetBasic<E> {
 
+    // Speichert die grösse des HashSets
     private int size = 0;
 
+    // Container für die Kollisionsabhandlung
     private CollisionEntry[] collisionBucket = new CollisionEntry[16];
 
-
+    /**
+     * Klasse für einen Kollisionseintrag.
+     * Speichert das entsprechende Objekt und eine Referenz
+     * auf das nächste Element im Container (sofern vorhanden).
+     */
     private static class CollisionEntry {
         Object key;
         CollisionEntry next;
     }
 
+    /**
+     * Gibt einen neuen Hashcode zurück
+     * @param hashCode
+     * @return
+     */
     private int hashFunction(int hashCode) {
         int index = hashCode;
         if (index < 0) {
@@ -29,44 +39,61 @@ public class LLHashSet<E> extends SetBasic<E> {
         return index % collisionBucket.length;
     }
 
-
+    /**
+     * Prüft ob ein entsprechendes Element im HashSet vorhanden ist.
+     * @param o Element das auf vorhandensein überprüft werden soll.
+     * @return true wenn das Element vorhanen ist.
+     */
     @Override
     public boolean contains(Object o) {
         int index = hashFunction(o.hashCode());
         CollisionEntry current = collisionBucket[index];
 
         while (current != null) {
-            // check if node contains element
-            if (current.key.equals(o)) { return true; }
-            // otherwise visit next node in the bucket
+            // Prüft ob die Node das Element enthält
+            if (current.key.equals(o)) {
+                return true;
+            }
+            // ansonsten wird das nächste Node im Bucket besucht
             current = current.next;
         }
-        // no element found
+        // Kein Element gefunden
         return false;
     }
 
+    /**
+     * Ergänzt einen eintrag im HashSet
+     * @param e das Element welches in die Sammlung eingesetzt werden soll
+     * @return true wenn das einfügen erfolgreich vollzogen wurde.
+     */
     @Override
     public boolean add(E e) {
         int index = hashFunction(e.hashCode());
         CollisionEntry current = collisionBucket[index];
 
         while (current != null) {
-            // element is already in set
-            if (current.key.equals(e)) { return false; }
-            // otherwise visit next entry in the bucket
+            // Element bereits im set vorhanden
+            if (current.key.equals(e)) {
+                return false;
+            }
+            // Ansonsten das nächstes Element im Container auswählen
             current = current.next;
         }
-        // no element found so add new entry
+        // Kein Element gefunden, neuen eintrag ergänzen
         CollisionEntry entry = new CollisionEntry();
         entry.key = e;
-        // current Entry is null if bucket is empty
-        // if it is not null it becomes next Entry
-        entry.next  = collisionBucket[index];
+        // Aktueller Eintrag ist null, wenn der container leer ist
+        entry.next = collisionBucket[index];
         collisionBucket[index] = entry;
         size++;
         return true;
     }
 
+    /**
+     * Entfernt ein Objekt aus dem HashSet wenn es vorhanden ist.
+     * @param o das Objekt das entfernt werden soll.
+     * @return true wenn das entfernen erfolgreich durchgeführt werden konnte.
+     */
     @Override
     public boolean remove(Object o) {
         int index = hashFunction(o.hashCode());
@@ -74,7 +101,7 @@ public class LLHashSet<E> extends SetBasic<E> {
         CollisionEntry previous = null;
 
         while (current != null) {
-            // element found so remove it
+            // Element gefunden -> Entfernen
             if (current.key.equals(o)) {
 
                 if (previous == null) {
@@ -85,14 +112,12 @@ public class LLHashSet<E> extends SetBasic<E> {
                 size--;
                 return true;
             }
-
             previous = current;
             current = current.next;
         }
-        // no element found nothing to remove
+        // Passendes Element nicht gefunden
         return false;
     }
-
 
     @Override
     public Iterator<E> iterator() {
@@ -130,14 +155,17 @@ public class LLHashSet<E> extends SetBasic<E> {
 
         @Override
         public boolean hasNext() {
-            // currentEntry node has next
-            if (currentEntry != null && currentEntry.next != null) { return true; }
-
-            // there are still nodes
-            for (int index = currentBucket+1; index < collisionBucket.length; index++) {
-                if (collisionBucket[index] != null) { return true; }
+            // currentEntry node hat weiteren Eintrag
+            if (currentEntry != null && currentEntry.next != null) {
+                return true;
             }
-            // nothing left
+
+            // Weitere Nodes bearbeiten
+            for (int index = currentBucket + 1; index < collisionBucket.length; index++) {
+                if (collisionBucket[index] != null) {
+                    return true;
+                }
+            }
             return false;
         }
 
@@ -146,31 +174,20 @@ public class LLHashSet<E> extends SetBasic<E> {
             previousEntry = currentEntry;
             previousBucket = currentBucket;
 
-            // if either the current or next node are null
             if (currentEntry == null || currentEntry.next == null) {
-                // go to next bucket
                 currentBucket++;
-                // keep going until you find a bucket with a node
                 while (currentBucket < collisionBucket.length &&
                         collisionBucket[currentBucket] == null) {
-                    // go to next bucket
                     currentBucket++;
                 }
-                // if bucket array index still in bounds
-                // make it the current node
                 if (currentBucket < collisionBucket.length) {
                     currentEntry = collisionBucket[currentBucket];
-                }
-                // otherwise there are no more elements
-                else {
+                } else {
                     throw new NoSuchElementException();
                 }
-            }
-            // go to the next element in bucket
-            else {
+            } else {
                 currentEntry = currentEntry.next;
             }
-            // return the element in the current node
             return currentEntry.key;
         }
     }
