@@ -16,7 +16,7 @@ ___
 - [x] Aufgaben zu den Sortierverfahren (PVA3)
 - [x] Aufgabe zur binären Suche (PVA4)
 - [x] Traversierung von Bäumen (PVA4)
-- [ ] Implementierungsaufgabe zu HashSets (PVA5)
+- [x] Implementierungsaufgabe zu HashSets (PVA5)
 
 
 ---
