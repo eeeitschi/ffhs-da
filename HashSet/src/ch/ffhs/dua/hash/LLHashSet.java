@@ -9,11 +9,7 @@ import java.util.NoSuchElementException;
  * @param <E>
  */
 public class LLHashSet<E> extends SetBasic<E> {
-
-    // Speichert die grösse des HashSets
     private int size = 0;
-
-    // Container für die Kollisionsabhandlung
     private CollisionEntry[] collisionBucket = new CollisionEntry[16];
 
     /**

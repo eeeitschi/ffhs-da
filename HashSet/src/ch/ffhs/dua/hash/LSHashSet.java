@@ -6,7 +6,6 @@ import java.util.NoSuchElementException;
 /**
  * Teil-Implementierung einer HashSet Klasse.
  * Kollisionen sollen mit linearer Sondierung behandelt werden.
- *
  * @param <E>
  */
 public class LSHashSet<E> extends SetBasic<E> {
@@ -14,6 +13,11 @@ public class LSHashSet<E> extends SetBasic<E> {
     private Object[] keys = new Object[50];
     private Object[] vals = new Object[50];
 
+    /**
+     * Gibt einen Hashcode für den übermittelten Key zurück
+     * @param key
+     * @return HashCode
+     */
     private int hash(Object key) {
         int index = key.hashCode();
         if (index < 0) {
@@ -22,6 +26,11 @@ public class LSHashSet<E> extends SetBasic<E> {
         return index % keys.length;
     }
 
+    /**
+     * Prüft ob ein entsprechendes Element im HashSet vorhanden ist.
+     * @param obj Element das auf vorhandensein überprüft werden soll.
+     * @return true wenn das Element vorhanen ist.
+     */
     @Override
     public boolean contains(Object obj) {
         int i = hash(obj);
@@ -33,6 +42,11 @@ public class LSHashSet<E> extends SetBasic<E> {
         return false;
     }
 
+    /**
+     * Ergänzt einen eintrag im HashSet
+     * @param e das Element welches in die Sammlung eingesetzt werden soll
+     * @return true wenn das einfügen erfolgreich vollzogen wurde.
+     */
     @Override
     public boolean add(Object e) {
         int tmp = hash(e);
@@ -53,13 +67,17 @@ public class LSHashSet<E> extends SetBasic<E> {
             }
 
             i = (i + 1) % keys.length;
-
         }
         // solange i nicht temp entspricht
         while (i != tmp);
         return false;
     }
 
+    /**
+     * Entfernt ein Objekt aus dem HashSet wenn es vorhanden ist.
+     * @param o das Objekt das entfernt werden soll.
+     * @return true wenn das entfernen erfolgreich durchgeführt werden konnte.
+     */
     @Override
     public boolean remove(Object o) {
         if (!contains(o))
