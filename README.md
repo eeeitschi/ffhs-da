@@ -54,4 +54,5 @@ Der Sourcecode ist im originalen Verzeichnis Sortieren sr/ch.ffhs.dua.tree zu fi
 
 ---
 #### Implementierungsaufgabe zu HashSets (PVA5)
-Implementierung ausstehend...
+Die Aufgabe wurde anhand dem Markdown "Aufgabenstellung zu Hashsets.md" gelöst.
+Der Sourcecode ist im originalen Verzeichnis Sortieren sr/ch.ffhs.dua.hash zu finden.
