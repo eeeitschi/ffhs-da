@@ -4,10 +4,9 @@ Fernfachhochschule Schweiz <br>
 
 Modul: Datenstrukturen und Algorithmen (D&A) <br>
 Dozent: Jiri Hochmann <br>
-Gruppe: 06 <br>
 Gruppenmitglieder: 
 - Achim Grether
-- Alexandra Wittwer
+
 ___
 ### Übersicht der Arbeiten als Nachbereitung zu den PVAs:
 - [x] Implementierungsaufgabe zu doppelt geketteten Listen (PVA1)
